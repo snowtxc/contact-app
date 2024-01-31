@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string("email");
             $table->string("address");
             $table->string("title");
-            $table->string("profilePicture");
+            $table->string("profilePicture")->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
             ->references('id')->on('users')->onDelete('cascade');

@@ -1,5 +1,9 @@
 <template>
   <div>
-    <NuxtWelcome />
+    <RouterView></RouterView>
+
+
+
+
   </div>
 </template>

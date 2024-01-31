@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group([
     'prefix' => 'auth'
 ], function ($router) {
-Route::post('/login', [AuthController::class, "login"]);
+    Route::post('/login', [AuthController::class, "login"]);
 });
 
 
@@ -32,6 +32,10 @@ Route::group([
     'middleware' => 'auth:sanctum'
 ], function ($router) {
     Route::post('/', [ContactController::class, "create"]);
+    Route::get('/', [ContactController::class, "list"]);
+    Route::get('/{id}', [ContactController::class, "getById"]);
+    Route::post('/{id}/edit', [ContactController::class, "update"]);
+
 });
 
 

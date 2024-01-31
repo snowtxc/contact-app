@@ -14,6 +14,10 @@ class AuthService
             return null;
         }
         $token = $user->createToken($user->name.'-AuthToken')->plainTextToken;
-        return $token;
+        return  [
+            "id" => $user->id,
+            "email" => $user->email,
+            "token" => $token
+        ];
     }
 }
