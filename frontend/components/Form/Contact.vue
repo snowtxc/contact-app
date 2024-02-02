@@ -33,6 +33,8 @@
     }else{
       const { id } = props.defaultValues;
       const contactUpdate = await contactStore.update(id, values, avatarFile.value);
+      textName.value = contactUpdate.name;
+      textTitle.value = contactUpdate.title;
       alert.showSucess("Contact updated successfuly!");
       
     }
@@ -54,7 +56,7 @@
   }
 
   const onCancel = ($e)=>{
-    navigateTo("/contacts");
+    navigateTo("/");
   }
 
 

@@ -29,7 +29,6 @@ const contactsList = computed(() => {
     <div class="flex w-full h-full justify-end items-center">
           <div class="flex justify-end">
             <BaseLogoutButton></BaseLogoutButton>
-
           </div>
         </div>
   </HeaderComponent>

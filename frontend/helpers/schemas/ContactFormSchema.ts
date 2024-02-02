@@ -8,5 +8,4 @@ export const ContactFormSchema = yup.object({
     phone: yup.string().required(),
     email: yup.string().required().email(),
     title: yup.string().required() ,
-    profilePicture: yup.string()
 });
