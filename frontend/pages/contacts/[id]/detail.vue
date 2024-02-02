@@ -1,5 +1,7 @@
-<script setup>
+<script lang="ts" setup>
+
 definePageMeta({
+  middleware: "auth",
   validate: async (route) => {
     if (!route.params) {
       return false;
@@ -8,6 +10,9 @@ definePageMeta({
       return false;
     }
     const id = route.params.id;
+    if(typeof id != 'string'){
+      return false;
+    }
     if(!new RegExp("^[0-9]*$").test(id)){
         return false;
     }
@@ -18,23 +23,35 @@ import { useContactStore } from "@/stores/contactStore";
 const contactApi = useContactStore();
 const id = useRoute().params.id;
 const contact  = await contactApi.fetchById(id);
+console.log(contact)
 
 </script>
 
 <template>
-  <HeaderComponent class="flex justify-end items-end">
-      <div class="px-2 pb-2">
+  <HeaderComponent class="flex justify-start items-center">
+        <BaseBackButton></BaseBackButton>
+        <div class="w-full flex justify-end">
+          <BaseLogoutButton></BaseLogoutButton>
+
+        </div>
+    </HeaderComponent>
+    <BannerComponent>
+      <div class="flex justify-end h-full items-end px-2 pb-2">
         <NuxtLink :to="`/contacts/${id}/edit`">
           <BaseButtonComponent text="Edit"></BaseButtonComponent>
         </NuxtLink>
       </div>
-    </HeaderComponent>
-    <BannerComponent></BannerComponent>
+    </BannerComponent>
     <div class="w-full" v-if="contact">
     <UserAvatar
-      classes="mx-auto relative -mt-56 md:-mt-40"
+      classes="w-28 h-28 md:w-44 md:h-44  mx-auto relative -mt-56 md:-mt-40"
+      imgClasses="w-28 h-28 md:h-44 md:w-44"
       :urlImg="contact ? contact.profilePicture : ''"
     ></UserAvatar>
+    <div class="flex flex-col justify-center items-center mt-5">    
+      <h2 class="font-semibold text-2xl">{{ contact.name }}</h2>
+      <p class="text-gray-500">{{ contact.title}}</p>
+    </div>
     <div
       class="flex flex-col items-center justify-center mt-20 md:mt-10 flex-wrap gap-10"
     >

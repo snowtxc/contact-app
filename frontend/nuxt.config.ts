@@ -5,5 +5,16 @@ export default defineNuxtConfig({
   '@nuxtjs/tailwindcss',
   'nuxt-icon',
   '@pinia/nuxt',
-  '@pinia-plugin-persistedstate/nuxt']  
+  '@pinia-plugin-persistedstate/nuxt'] ,
+
+  app: {
+    head:{
+      script: [
+        {          src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB5vf7SBiC6mcZJRH8sWw99ZwlC6zDss7o&libraries=places'      }
+      ]
+    }
+  }
+
+
+  
 })

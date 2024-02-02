@@ -15,7 +15,10 @@ import type { BaseButtonComponent } from '#build/components';
         <p class="font-bold text-lg mt-5">
             Add contacts to your database
         </p>
-      <BaseButtonComponent text="Add new contacts" class="mt-5"></BaseButtonComponent>
+       <NuxtLink to="/create">
+        <BaseButtonComponent text="Add new contacts" class="mt-5"></BaseButtonComponent>
+
+       </NuxtLink>
     </div>
       
 

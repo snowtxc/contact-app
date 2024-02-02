@@ -1,5 +1,9 @@
-<script setup>
+<script lang="ts" setup>
     import { Action } from "@/helpers/enums/ActionEnum";
+    definePageMeta({
+        middleware: "auth",
+    });
+
 </script>
 
 <template>

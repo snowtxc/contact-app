@@ -6,12 +6,18 @@ export const useContactStore = defineStore('contact', {
     state: ()=> ({ }),
     actions: {
         async fetchAll(){
-            const data = await fetchWrapper.get(`${baseUrl}`);
-            return data;
+            try{
+                const data = await fetchWrapper.get(`${baseUrl}`); 
+                return data;
+            }catch(e){
+                console.log(e);
+                return e;
+            }
+           
         },
 
         async fetchById(id){
-            const contact  =  await fetchWrapper.get(`${baseUrl}/${id}`);
+            const contact =  await fetchWrapper.get(`${baseUrl}/${id}`);
             return contact;
         },
 
@@ -26,7 +32,7 @@ export const useContactStore = defineStore('contact', {
             if(avatarFile){
                 formData.append('avatar',avatarFile);
             }
-            const newContact = await fetchWrapper.post(`${baseUrl}/`,formData);
+            const newContact = await fetchWrapper.post(`${baseUrl}/`,formData,"multipart/form-data");
             return newContact;
         },
 
@@ -41,7 +47,7 @@ export const useContactStore = defineStore('contact', {
             if(avatarFile){
                 formData.append('avatar',avatarFile);
             }
-            const contactUpdated = await fetchWrapper.post(`${baseUrl}/${id}/edit`,formData);     
+            const contactUpdated = await fetchWrapper.post(`${baseUrl}/${id}/edit`,formData,"multipart/form-data");     
             return contactUpdated;
         }
     }

@@ -22,7 +22,7 @@ class ContactService
                 'email' => $contact->email,
                 'address' => $contact->address,
                 'title' => $contact->title,
-                'profilePicture' => $this->fileService->getRealPath($contact->profilePicture)
+                'profilePicture' => isset($contact->profilePicture) ? $this->fileService->getRealPath($contact->profilePicture) : null
             ];
         });
         return $contacts;
@@ -37,7 +37,7 @@ class ContactService
             "address" => $contact->address,
             "title" => $contact->title,
             "phone" => $contact->phone,
-            'profilePicture' => $this->fileService->getRealPath($contact->profilePicture)
+            'profilePicture' => isset($contact->profilePicture) ? $this->fileService->getRealPath($contact->profilePicture) : null
         ];
 
     }

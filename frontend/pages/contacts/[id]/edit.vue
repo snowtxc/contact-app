@@ -1,12 +1,13 @@
-<template>
+<template >
   <FormContact :action="Action.EDIT" :defaultValues="contact"></FormContact>
 
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { useContactStore } from "@/stores/contactStore";
 import { Action } from "~/helpers/enums/ActionEnum";
 definePageMeta({
+  middleware: "auth",
   validate: async (route) => {
     if (!route.params) {
       return false;
@@ -14,7 +15,10 @@ definePageMeta({
     if (!route.params.id) {
       return false;
     }
-    const id = route.params.id;
+    const id:string | string[] = route.params.id;
+    if(typeof id !== 'string'){
+      return false;
+    }
     if(!new RegExp("^[0-9]*$").test(id)){
         return false;
     }

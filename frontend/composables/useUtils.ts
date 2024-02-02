@@ -1,6 +1,6 @@
 export const useUtils = () => {
     
-    const fileToB64 = (file)=>{
+    const fileToB64 = (file:File)=>{
         return new Promise((resolve,reject)=>{
             const reader = new FileReader();
             reader.readAsDataURL(file);
@@ -13,6 +13,14 @@ export const useUtils = () => {
         })
     }
 
-    return { fileToB64}
+    const shortText = (text:string,maxLong: number) =>{
+        if (text.length > maxLong) {
+            return text.slice(0, maxLong) + '...';
+        } else {
+            return text;
+        }
+    }
+
+    return { fileToB64 , shortText}
     
 }

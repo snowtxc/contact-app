@@ -7,7 +7,13 @@ export const useAlert = () => {
     const showError = (errorMessage:string)=>{
         $toast.error(errorMessage);
     }
+
+    const showSucess = (message:string)=>{
+        $toast.success(message);
+    }
+
     return {
-        showError
+        showError,
+        showSucess
     }
 }
